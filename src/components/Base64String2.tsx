@@ -1,12 +1,11 @@
 import { Converter } from "./Converter.tsx";
+import { fromBinary2, toBinary2 } from "./utils.ts";
 
-const encoder = new TextEncoder();
-const decoder = new TextDecoder();
 function encode(value: string) {
-  return btoa(String.fromCharCode(...encoder.encode(value)));
+  return btoa(toBinary2(value));
 }
 function decode(value: string) {
-  return decoder.decode(Uint8Array.from(atob(value), (x) => x.charCodeAt(0)));
+  return fromBinary2(atob(value));
 }
 
 export default function () {
