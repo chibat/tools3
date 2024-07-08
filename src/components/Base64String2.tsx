@@ -1,4 +1,4 @@
-import { EncodeDecode } from "./EncodeDecode";
+import { Converter } from "./Converter.tsx";
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -9,6 +9,11 @@ function decode(value: string) {
   return decoder.decode(Uint8Array.from(atob(value), (x) => x.charCodeAt(0)));
 }
 
-export default function() {
-  return <EncodeDecode encode={encode} decode={decode} />
+export default function () {
+  return <>
+    <h2>encode</h2>
+    <Converter convert={encode} />
+    <h2>decode</h2>
+    <Converter convert={decode} />
+  </>
 }

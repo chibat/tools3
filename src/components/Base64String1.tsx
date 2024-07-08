@@ -1,4 +1,4 @@
-import { EncodeDecode } from "./EncodeDecode.tsx";
+import { Converter } from "./Converter.tsx";
 import { fromBinary, toBinary } from "./utils.ts";
 
 function encode(value: string) {
@@ -8,6 +8,11 @@ function decode(value: string) {
   return fromBinary(atob(value));
 }
 
-export default function() {
-  return <EncodeDecode encode={encode} decode={decode} />
+export default function () {
+  return <>
+    <h2>encode</h2>
+    <Converter convert={encode} />
+    <h2>decode</h2>
+    <Converter convert={decode} />
+  </>
 }
