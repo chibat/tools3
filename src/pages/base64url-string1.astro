@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Component from "../components/Base64UrlString1.tsx";
+
+const title = "base64url string v1";
+---
+
+<Layout title={title}>
+  <main>
+    <h1>{title}</h1>
+    <Component client:visible />
+  </main>
+</Layout>
