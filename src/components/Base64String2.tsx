@@ -2,31 +2,13 @@ import { signal } from "@preact/signals";
 
 const ERROR_MESSAGE = "Contains characters that cannot be converted.";
 
-// 文字列をバイナリに変換
-// https://developer.mozilla.org/ja/docs/Web/API/btoa#unicode_%E6%96%87%E5%AD%97%E5%88%97
-function toBinary(string: string) {
-  const codeUnits = new Uint16Array(string.length);
-  for (let i = 0; i < codeUnits.length; i++) {
-    codeUnits[i] = string.charCodeAt(i);
-  }
-  return String.fromCharCode(...new Uint8Array(codeUnits.buffer));
-}
-
-// バイナリを文字列に変換
-// https://developer.mozilla.org/ja/docs/Web/API/btoa#unicode_%E6%96%87%E5%AD%97%E5%88%97
-function fromBinary(binary: string) {
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < bytes.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-  return String.fromCharCode(...new Uint16Array(bytes.buffer));
-}
-
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 function encode(value: string) {
-  return btoa(toBinary(value));
+  return btoa(String.fromCharCode(...encoder.encode(value)));
 }
 function decode(value: string) {
-  return fromBinary(atob(value));
+  return decoder.decode(Uint8Array.from(atob(value), (x) => x.charCodeAt(0)));
 }
 
 export default function() {

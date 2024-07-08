@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Component from "../components/Base64.tsx";
+
+const title = "base64";
 ---
 
-<Layout title="base64">
+<Layout title={title}>
   <main>
-    <h1>base64</h1>
+    <h1>{title}</h1>
     <Component client:visible />
   </main>
 </Layout>
