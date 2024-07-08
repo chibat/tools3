@@ -17,3 +17,14 @@ export function fromBinary(binary: string) {
   }
   return String.fromCharCode(...new Uint16Array(bytes.buffer));
 }
+
+export function btoa_url(data: string) {
+  return btoa(data)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
+
+export function atob_url(data: string) {
+  return atob(data.replace(/-/g, '+').replace(/_/g, '/'))
+}

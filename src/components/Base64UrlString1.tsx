@@ -1,14 +1,11 @@
 import { Converter } from "./Converter.tsx";
-import { fromBinary, toBinary } from "./utils.ts";
+import { atob_url, btoa_url, fromBinary, toBinary } from "./utils.ts";
 
 function encode(value: string) {
-  return btoa(toBinary(value))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+  return btoa_url(toBinary(value));
 }
 function decode(value: string) {
-  return fromBinary(atob(value.replace(/-/g, '+').replace(/_/g, '/')));
+  return fromBinary(atob_url(value));
 }
 
 export default function () {
